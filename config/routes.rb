@@ -1,4 +1,6 @@
 Uploadist::Application.routes.draw do
+  resources :ratings
+
 resources :users, :albums, :photos
 root to: 'users#home'
 
