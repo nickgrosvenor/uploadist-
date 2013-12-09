@@ -16,5 +16,6 @@
 /tmp
 
 # Ignore application configuration
+/config/initializers/omniauth.rb
 /config/application.yml
 /vendor/bundle

@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  has_many :album_photos
-  has_many :ratings 
   belongs_to :user
+  has_many :album_photos 
+  belongs_to :rating 
 end

@@ -1,11 +1,16 @@
 Uploadist::Application.routes.draw do
+  resources :albums
+
+  resources :album_photos
+
+  resources :photos
+
   resources :ratings
 
-resources :users, :albums, :photos
-root to: 'users#home'
+  resources :users, :albums, :photos
+  root to: 'users#home'
 
-  
-    get 'signup', to: 'users#new', as: 'signup'
+  get 'signup', to: 'users#new', as: 'signup'
 
   # OmniAuth stuff 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
