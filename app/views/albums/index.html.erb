@@ -1,31 +1,16 @@
-<h1>Listing albums</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Url</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <td><%= album.user %></td>
-        <td><%= album.name %></td>
-        <td><%= album.url %></td>
-        <td><%= link_to 'Show', album %></td>
-        <td><%= link_to 'Edit', edit_album_path(album) %></td>
-        <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="container">
+  <div class="file-upload main-container">
+    <h3 id="drag-here">Drag all photos here</h3>
+      <%= s3_uploader_form callback_url: albums_url, id: "s3-uploader", callback_param: "album[direct_upload_url]", expiration: 24.hours.from_now.utc.iso8601, max_file_size: 5.megabytes do %>
+      <%= hidden_field_tag  "Content-type", "" %>
+      <%= file_field_tag :file, multiple: true %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Album', new_album_path %>
+    <div id="uploads_container"></div>
+    <script id="template-upload" type="text/x-tmpl">
+    <div id="upload_{%=o.unique_id%}" class="upload">
+    <div id="upload-image"></div>
+      <div class="progress progress-striped active"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    </script>
+  </div>
+</div>

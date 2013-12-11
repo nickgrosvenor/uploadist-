@@ -23,6 +23,8 @@ class PhotosController < ApplicationController
 
   # POST /photos
   # POST /photos.json
+  
+  
   def create
     @photo = current_user.photos.new(photo_params)
 

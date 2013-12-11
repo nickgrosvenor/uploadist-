@@ -16,6 +16,7 @@
 /tmp
 
 # Ignore application configuration
+/config/aws.yml
 /config/initializers/omniauth.rb
 /config/application.yml
 /vendor/bundle

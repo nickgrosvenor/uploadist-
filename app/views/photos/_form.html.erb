@@ -11,15 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for(@photo, html: { multipart: true }) do |f| %>
+  <%= f.label :image, "Upload Photos:" %>
+  <%= f.file_field :image, multiple: true, name: "photo[image]"   %> 
+   <%= f.submit %>
+<% end %> 
 <% end %>

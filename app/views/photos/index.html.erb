@@ -1,29 +1,31 @@
-<h1>Listing photos</h1>
+          <h1>Listing photos</h1>
+<%= s3_uploader_form callback_url: documents_url,
+  id: "s3_uploader",
+  callback_param: "document[direct_upload_url]",
+  expiration: 24.hours.from_now.utc.iso8601,
+  max_file_size: 100.megabytes do %>
+  <%= file_field_tag :file, multiple: true %>
+<% end %>
+<div id="uploads_container"></div>
+<script id="template-upload" type="text/x-tmpl">
+<div id="upload_{%=o.unique_id%}" class="upload">
+  <h5>{%=o.name%}</h5>
+  <div class="progress progress-striped active"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
 
-<table>
-  <thead>
-    <tr>
-      <th>Url</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  
+          <% @photos.each do |photo| %>
+              <div class="photo_list">  
+                  <img src="<%= photo.url %>">
+                  <% photo.user %>
+                  <% link_to 'Show', photo %>
+                  <%= link_to 'Edit', edit_photo_path(photo) %>
+                  <% link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div> 
+          <% end %>
 
-  <tbody>
-    <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.url %></td>
-        <td><%= photo.user %></td>
-        <td><%= link_to 'Show', photo %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+          <br>
 
-<%= link_to 'New Photo', new_photo_path %>
+          <%= link_to 'New Photo', new_photo_path %>
