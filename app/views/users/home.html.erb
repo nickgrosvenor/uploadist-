@@ -1,21 +1,51 @@
 <div class="header"> 
-    <a href="/">
-        <div class="brand">
-            <h1>UPLOADIST</h1>
+   
+        <div id="clickable" class="brand">
+
+            <img alt="Rails" src="/assets/arrow.svg" />
         </div>
     </a>
-    <div class="upload">
-        <h1>+</h1>
+    <div class="hot">
+        <h1>HOT | NEW</h1>
     </div>
     <div class="login">
-        <h1>login</h1>
+        <h1>LOGIN</h1>
     </div>
 
 </div>
 
 <div class="container">
-something
-</div>    
+   
 
+</div> 
+
+<script>$(function(){
+    $("#clickable").on("click",function(){
+        $(".new_album_form").fadeIn(2000);
+       // $(".container").prepend("<div class='single_album'>hello</div>");
+       // $(".container").children()[0].onclick=function(){alert("hello world");};
+    });
+});</script>   
+
+<div class="new_album_form"> 
+    
+    <div class="new_album_form_inputs">
+        <div class="container">
+  <div class="file-upload main-container">
+    <h3 id="drag-here">Drag all photos here</h3>
+      <%= s3_uploader_form callback_url: albums_url, id: "s3-uploader", callback_param: "album[direct_upload_url]", expiration: 24.hours.from_now.utc.iso8601, max_file_size: 5.megabytes do %>
+      <%= hidden_field_tag  "Content-type", "" %>
+      <%= file_field_tag :file, multiple: true %>
+    <% end %>
+    <div id="uploads_container"></div>
+    <script id="template-upload" type="text/x-tmpl">
+    <div id="upload_{%=o.unique_id%}" class="upload">
+    <div id="upload-image"></div>
+      <div class="progress progress-striped active"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    </script>
+  </div>
+</div>
+</div>
 
 

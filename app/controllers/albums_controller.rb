@@ -3,7 +3,9 @@ class AlbumsController < ApplicationController
   # @http_method XHR POST
   # @url /documents
   def create
-      @album = current_user.albums.create(album_params)
+      logger.info params[:album][:direct_upload_url]
+      @album = current_user.albums.create!(album_params)
+      
    
   end
 

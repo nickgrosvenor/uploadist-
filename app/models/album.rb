@@ -1,8 +1,8 @@
 class Album < ActiveRecord::Base
  
  # Environment-specific direct upload url verifier screens for malicious posted upload locations.
-  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-us-west-2\.amazonaws\.com\/uploadist#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<filepath>uploads\/.+\/(?<filename>.+))\z}.freeze
- 
+  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-us-west-2\.amazonaws\.com\/uploadist\/(?<filepath>uploads\/.+\/(?<filename>.+))\z}.freeze
+ # https://s3-us-west-2.amazonaws.com/uploadist/uploads%2F1386814274254-16hda061d84r6bt9-86404601a344c663ad17c4eda70f4403%2FNick%2BGrosvenor%2BKatie%2BLaBarge%2BLCDQ%2BLa%2BCienega%2BRigZnefelABl.jpg
   belongs_to :user
   has_many :album_photos
 
