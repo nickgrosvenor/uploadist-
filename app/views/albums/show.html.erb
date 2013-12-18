@@ -1,19 +1,43 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @album.user %>
-</p>
+  <%= form_for [@album, @photo] do |a|%>
+        <%= a.text_field :direct_upload_url, placeholder: "P H O T O" %>
+        <%= a.submit %>
+  <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @album.name %>
-</p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @album.url %>
-</p>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+  <% @album.photos.each do |p| %>
+    <div id="U<%= p.id %>" class="upvote">Upvote</div>
+          <div id="pRating<%= p.id %>"><%= p.rating_amount %></div>
+          How many fucking ratings: <%= p.ratings.count %>
+    <div id="D<%= p.id %>" class="downvote">Downvote</div>
+        <img src="<%= p.direct_upload_url %>"/>
+  <% end %>
+
+  <script>
+    $(".upvote").on("click", function(xyz){
+      $.ajax({
+  type: "POST",
+  url: "/ratings",
+  data: {rating:{"photo_id": this.id.substring(1,999),
+  "is_good":true}},
+  success:
+         function(data){
+          $("#pRating"+data.id).html(data.rating);
+      }
+    });
+  });
+
+    $(".downvote").on("click", function(xyz){
+      $.ajax({
+  type: "POST",
+  url: "/ratings",
+  data: {rating:{"photo_id": this.id.substring(1,999),
+  "is_good":false}},
+  success:
+         function(data){
+          $("#pRating"+data.id).html(data.rating);
+      }
+    });
+  });
+  </script>

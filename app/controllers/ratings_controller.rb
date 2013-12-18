@@ -24,17 +24,33 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
+    puts "Well... " + rating_params.inspect
+    rating = Rating.find_by(user_id: current_user.id, photo_id: rating_params[:photo_id])
 
-    respond_to do |format|
-      if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @rating }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
+    if rating
+      p = Photo.find(rating.photo_id)
+      if rating.is_good != (rating_params[:is_good] == "true")
+        p.rating_amount += rating.is_good ? -1 : 1
+        rating.destroy
+        p.save
       end
+      render json: {id:p.id, rating:p.rating_amount}
+      return
+    else
+      rating = Rating.new(user_id: current_user.id,
+       photo_id: rating_params[:photo_id]) if !rating
+
+      p = Photo.find(rating.photo_id)
+      rating.is_good = rating_params[:is_good]
+      rating.save
+      if rating.is_good
+        p.rating_amount += 1
+      else
+        p.rating_amount -= 1
+      end
+      p.save
     end
+    render json: {id:p.id, rating:p.rating_amount}
   end
 
   # PATCH/PUT /ratings/1
@@ -69,6 +85,6 @@ class RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:user_id, :photo_id)
+      params.require(:rating).permit(:user_id, :photo_id, :is_good)
     end
 end

@@ -10,6 +10,8 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @photo = Photo.find(params[:id])
+
   end
 
   # GET /photos/new
@@ -26,18 +28,37 @@ class PhotosController < ApplicationController
   
   
   def create
-    @photo = current_user.photos.new(photo_params)
+    a = current_user.albums.find(params[:album_id])
+    p = Photo.new(photo_params)
+    p.rating_amount = 0
+    p.save
+    a.album_photos.create(photo:p)
 
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @photo }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to a
+
+    # respond_to do |format|
+    #   if @photo.save
+    #     format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @photo }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @photo.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
+
+  # def addvote 
+  #   @photo = Photo.find(params[:id])
+  #   @ratings = @photo.ratings.count += 1
+  #   redirect_to :back
+
+  # end 
+
+  #  def downvote 
+  #   @photo = Photo.find(params[:id])
+  #   @ratings = @photo.ratings.count -= 1
+  #   redirect_to :back
+  # end 
 
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
@@ -71,6 +92,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:url, :user_id)
+      params.require(:photo).permit(:direct_upload_url, :user_id)
     end
 end

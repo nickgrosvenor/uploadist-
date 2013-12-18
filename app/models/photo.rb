@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :album_photos 
-  belongs_to :rating 
+  has_many :ratings
 
   # has_attached_file :image, styles: { medium:"200x200" }
 

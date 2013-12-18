@@ -1,9 +1,11 @@
 Uploadist::Application.routes.draw do
-  resources :albums
+  resources :albums do 
+    resources :photos
+  end
 
   resources :album_photos
 
-  resources :photos
+  
 
   resources :ratings
 

@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     session[:user_type] = "User"
   end
 
+  def home
+    @album = Album.new
+    @all_albums = Album.all
+  end
+
   def create
     redirect_to users_url
   end
