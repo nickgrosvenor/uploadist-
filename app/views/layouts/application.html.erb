@@ -3,25 +3,25 @@
 <head>
   <title>Uploadist</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
 </head>
 <body>
         <!--facebook login-->
-      <div id="user-widget">
+      <div id="user-widget" class="login">
         <% if current_user %>
-          Welcome <strong><%= current_user.name %></strong>!
+          <strong><%= current_user.name %></strong>
           <%= link_to "Sign out", signout_path, id: "sign_out" %>
         <% else %>
-          <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
         <% end %>
       </div>  
         <!--facebook login end-->
 
 
-
-    
+ 
 
 
 

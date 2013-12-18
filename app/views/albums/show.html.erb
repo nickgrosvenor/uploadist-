@@ -4,40 +4,57 @@
         <%= a.submit %>
   <% end %>
 
+ 
+    
+  
 
+<div class="album_show_container">
 
-  <% @album.photos.each do |p| %>
-    <div id="U<%= p.id %>" class="upvote">Upvote</div>
-          <div id="pRating<%= p.id %>"><%= p.rating_amount %></div>
-          How many fucking ratings: <%= p.ratings.count %>
-    <div id="D<%= p.id %>" class="downvote">Downvote</div>
-        <img src="<%= p.direct_upload_url %>"/>
-  <% end %>
+      
+    
+      <% @album.photos.each do |p| %>
+  <div class="photo_wrapper">
+    <div class="rating_wrapper">
+        <div id="U<%= p.id %>" class="upvote"> 
+            <div class="glyphicon glyphicon-chevron-up"></div> 
+        </div>
+              <div class="rating_number"><div id="pRating<%= p.id %>"><%= p.rating_amount %></div>
+              </div>
+              <!-- How many ratings: <%#= p.ratings.count %> -->
+        <div id="D<%= p.id %>" class="downvote">
+            <div class="glyphicon glyphicon-chevron-down"></div>
+        </div>
+    </div>
+            <img src="<%= p.direct_upload_url %>"/>
+  </div>        
+      <% end %>
 
-  <script>
-    $(".upvote").on("click", function(xyz){
-      $.ajax({
-  type: "POST",
-  url: "/ratings",
-  data: {rating:{"photo_id": this.id.substring(1,999),
-  "is_good":true}},
-  success:
-         function(data){
-          $("#pRating"+data.id).html(data.rating);
-      }
-    });
-  });
+      <script>
+        $(".upvote").on("click", function(xyz){
+          $.ajax({
+      type: "POST",
+      url: "/ratings",
+      data: {rating:{"photo_id": this.id.substring(1,999),
+      "is_good":true}},
+      success:
+             function(data){
+              $("#pRating"+data.id).html(data.rating);
+          }
+        });
+      });
 
-    $(".downvote").on("click", function(xyz){
-      $.ajax({
-  type: "POST",
-  url: "/ratings",
-  data: {rating:{"photo_id": this.id.substring(1,999),
-  "is_good":false}},
-  success:
-         function(data){
-          $("#pRating"+data.id).html(data.rating);
-      }
-    });
-  });
-  </script>
+        $(".downvote").on("click", function(xyz){
+          $.ajax({
+      type: "POST",
+      url: "/ratings",
+      data: {rating:{"photo_id": this.id.substring(1,999),
+      "is_good":false}},
+      success:
+             function(data){
+              $("#pRating"+data.id).html(data.rating);
+          }
+        });
+      });
+      </script>
+      
+</div>      
