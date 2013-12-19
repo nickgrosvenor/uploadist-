@@ -12,7 +12,7 @@
 
       
     
-      <% @album.photos.each do |p| %>
+      <% @album.photos.order("rating_amount DESC").each do |p| %>
   <div class="photo_wrapper">
     <div class="rating_wrapper">
         <div id="U<%= p.id %>" class="upvote"> 
@@ -25,7 +25,7 @@
             <div class="glyphicon glyphicon-chevron-down"></div>
         </div>
     </div>
-            <img src="<%= p.direct_upload_url %>"/>
+            <img id="img<%= p.id %>" src="<%= p.direct_upload_url %>"/>
   </div>        
       <% end %>
 
@@ -39,6 +39,7 @@
       success:
              function(data){
               $("#pRating"+data.id).html(data.rating);
+              $("#img"+data.id).css("opacity",1.0 - (0.25 * (-data.rating)));
           }
         });
       });
@@ -52,6 +53,7 @@
       success:
              function(data){
               $("#pRating"+data.id).html(data.rating);
+              $("#img"+data.id).css("opacity",1.0 - (0.25 * (-data.rating)));
           }
         });
       });

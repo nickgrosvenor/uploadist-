@@ -1,1 +1,90 @@
-fun
+<div class="header"> 
+   
+    <div id="clickable" class="brand">
+        <%= form_for @album do |a|%>
+        <%= a.text_field :name, placeholder: "N A M E" %>
+      <%= a.text_field :direct_upload_url, placeholder: "P H O T O" %>
+      <%= a.submit %>
+  <% end %>
+<!--         <img alt="Rails" src="/assets/arrow.svg" /> -->
+    </div></a>
+
+    <div class="hot">
+        <h1><div id="hot_id">HOT</div><h1>
+        
+          <h1><a href="/"><div class="new">NEW</div></h1></a>
+    </div>
+   
+
+
+
+    <!-- <div class="login">
+        <h1>LOGIN</h1>
+    </div> -->
+
+</div>
+
+<!-- new album form -->
+
+<!-- new album form end -->
+
+<!-- <div class="container">
+
+ </div> --> 
+
+  <% @all_albums.each do |a| %>
+    <div class="block">
+        <div class="name_block">
+            <%= a.name %>
+        </div> 
+
+        <div class="album_block">
+            <%= link_to a do %>
+        <img src="<%= a.photos.order("rating_amount DESC").limit(1)[0].direct_upload_url %>"/>
+            <% end %>
+        </div> 
+    </div>   
+
+
+    <% end %>
+      
+
+
+ <script>$(function(){
+//     $("#clickable").on("click",function(){
+//         alert("hi mom");
+//         $(".new_album_form").fadeIn(2000);
+//        // $(".container").prepend("<div class='single_album'>hello</div>");
+//        // $(".container").children()[0].onclick=function(){alert("hello world");};
+//     });
+// });</script>   
+
+ <!-- new album form --> -->
+<div class="new_album_form"> 
+    <div class="new_album_form_inputs">
+         <div class="file-upload main-container">
+         </div>
+    </div> 
+</div>
+
+//  <script>$(function(){
+//     $("#clickable").on("click",function(){
+        
+//         $(".new_album_form").fadeIn(2000);
+//        // $(".container").prepend("<div class='single_album'>hello</div>");
+//        // $(".container").children()[0].onclick=function(){alert("hello world");};
+//     });
+// });</script>  
+
+
+<!-- <div class="form_block">
+  <%#= form_for @album do |a|%>
+      <%#= a.text_field :name %>
+      <%#= a.text_field :direct_upload_url, placeholder: "photo" %>
+      <%#= a.submit %>
+  <%# end %>
+</div>   -->      
+
+
+<!-- new album form end -->
+

@@ -10,9 +10,12 @@
     </div></a>
 
     <div class="hot">
-        <h1>HOT | NEW</h1>
+        <h1><div id="hot_id">HOT</div><h1>
+        
+          <h1><a href="/"><div class="new">NEW</div></h1></a>
     </div>
-       
+   
+
 
 
     <!-- <div class="login">
@@ -37,7 +40,7 @@
 
         <div class="album_block">
             <%= link_to a do %>
-        <img src="<%= a.direct_upload_url %>"/>
+        <img src="<%= a.photos.order("rating_amount DESC").limit(1)[0].direct_upload_url %>"/>
             <% end %>
         </div> 
     </div>   
