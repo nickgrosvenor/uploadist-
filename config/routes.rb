@@ -14,6 +14,8 @@ Uploadist::Application.routes.draw do
 
   get 'signup', to: 'users#new', as: 'signup'
 
+  # get '/auth/facebook/' => 'users#index'
+
   # OmniAuth stuff 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

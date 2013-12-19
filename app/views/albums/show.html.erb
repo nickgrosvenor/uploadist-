@@ -25,7 +25,9 @@
             <div class="glyphicon glyphicon-chevron-down"></div>
         </div>
     </div>
-            <img id="img<%= p.id %>" src="<%= p.direct_upload_url %>"/>
+            <img id="img<%= p.id %>" src="<%= p.direct_upload_url %>"
+                style="opacity:<%= 1.0 - (0.25 * (-p.rating_amount)) %>;"
+             />
   </div>        
       <% end %>
 

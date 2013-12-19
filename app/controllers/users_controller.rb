@@ -21,4 +21,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def facebook_rocks_my_world
+    redirect_to "/"
+  end
 end

@@ -15,11 +15,16 @@
           <strong><%= current_user.name %></strong>
           <%= link_to "Sign out", signout_path, id: "sign_out" %>
         <% else %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook", html: {id: "sign_in"} %>
         <% end %>
       </div>  
 
-      
+<script type="text/javascript">
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
+    }
+</script>
+
         <!--facebook login end-->
 
 

@@ -37,11 +37,12 @@
     .hot {
       position: fixed;
       top:-31px;
-      height: 100%;
+      
       width: 250px;
       left: 43%;
       text-align: center;
       margin: 0 auto;
+      background-color: red;
 
     }
 
@@ -58,11 +59,12 @@
      .new {
       position: fixed;
       top:10px;
-      height: 100%;
+      
       width: 250px;
       left: 57%;
       text-align: center;
       margin: 0 auto;
+      background-color: green;
 
     }
 
