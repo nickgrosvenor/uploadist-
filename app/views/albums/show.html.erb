@@ -1,11 +1,17 @@
+<div class="show_header">
+     <div class="create_photos"
+      <%= form_for [@album, @photo] do |a|%>
+            <%= a.text_field :direct_upload_url, placeholder: "P H O T O" %>
+            <%= a.submit %>
+      <% end %>
+     </div>
 
-  <%= form_for [@album, @photo] do |a|%>
-        <%= a.text_field :direct_upload_url, placeholder: "P H O T O" %>
-        <%= a.submit %>
-  <% end %>
-
- 
-    
+     
+       <a href="/"><div class="hot_photos">HOT</div></a>
+        <a href="/users"><div class="new_photos">NEW</div></a>
+        
+    </div>   
+</div>
   
 
 <div class="album_show_container">
