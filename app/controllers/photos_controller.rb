@@ -28,11 +28,13 @@ class PhotosController < ApplicationController
   
   
   def create
-    a = current_user.albums.find(params[:album_id])
-    p = Photo.new(photo_params)
-    p.rating_amount = 0
-    p.save
-    a.album_photos.create(photo:p)
+    if current_user
+      a = Album.find(params[:album_id])
+      p = Photo.new(photo_params)
+      p.rating_amount = 0
+      p.save
+      a.album_photos.create(photo:p)
+    end
 
     redirect_to a
 
