@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
+ruby "2.0.0"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -10,6 +11,8 @@ gem 'aws-sdk' # S3 API
 gem 'paperclip' # file attachment syntax and callbacks
 gem 's3_direct_upload' # direct upload form helper and assets
 gem 'delayed_job_active_record'
+
+
 
 
 # Use SCSS for stylesheets
@@ -51,6 +54,11 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
 
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'thin'
 end
 
 # Use ActiveModel has_secure_password
