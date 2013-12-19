@@ -35,24 +35,24 @@
       color: black;
     }
     .hot {
-    position: relative;    
+    position: relative;
+    width: 150px;    
     font-size:40px; 
     font-family: didot;
     left:47%; 
     top: 6px;
-    color:#E0E0E0 ;  
+    color:#E0E0E0 ;
 
     }
-
-   
     
-     .new {
-    position: relative;    
+    .new {
+    position: relative; 
+    width:200px;   
     font-size:40px;
     font-family: didot;
     left:60%;
     top:-51px; 
-    color:#E0E0E0 ;   
+    color:#E0E0E0;
     }
 /*_________________show photos_______________________*/
 
@@ -67,22 +67,26 @@
 
 
     .hot_photos {
-    position: fixed;    
+    position: fixed;
+    width: 150px;     
     font-size:40px; 
     font-family: didot;
     left:40%; 
     top: 3px;
-    color:#E0E0E0 ;  
+    color:#E0E0E0 ;
+     
 
     }
 
     .new_photos {
     position: fixed;    
     font-size:40px;
+    width: 150px; 
     font-family: didot;
     left:60%;
     top:3px; 
-    color:#E0E0E0 ;   
+    color:#E0E0E0 ;
+    
     }
 
     .create_photos {
