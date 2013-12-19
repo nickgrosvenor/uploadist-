@@ -1,20 +1,19 @@
 <div class="header"> 
    
     <div id="clickable" class="brand">
-        <%= form_for @album do |a|%>
-        <%= a.text_field :name, placeholder: "N A M E" %>
+      <%= form_for @album do |a|%>
+      <%= a.text_field :name, placeholder: "N A M E" %>
       <%= a.text_field :direct_upload_url, placeholder: "P H O T O" %>
       <%= a.submit %>
-  <% end %>
+      <% end %>
 <!--         <img alt="Rails" src="/assets/arrow.svg" /> -->
-    </div></a>
-
-    <div class="hot">
-        <h1><div id="hot_id">HOT</div><h1>
-        
-          <h1><a href="/"><div class="new">NEW</div></h1></a>
     </div>
-   
+
+  
+    <a href="/"><div class="hot">HOT</div></a>
+    <a href="/users"><div class="new">NEW</div></a>
+    
+</div>
 
 
 
